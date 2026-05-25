@@ -18,26 +18,14 @@ export const SearchBar = ({ placeholder = 'Buscar', onQuery }: Props) => {
         }
     },[query, onQuery]);
 
-    const handleQueryFormat = (queryReceived: string) => {
-        const queryToLowerCase = queryReceived.toLowerCase();
-        return queryToLowerCase.trim();
-    }
-
     const handleSearch = () => {
-        if (query === '') {
-            console.log('Por favor ingrese una búsqueda válida.');
-        } else {
-            const queryFormatted = handleQueryFormat(query);
-            onQuery(queryFormatted);
-            setQuery('');
-        }
+        onQuery(query);
+        setQuery('');
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter' && query !== '') {
+        if (event.key === 'Enter') {
             handleSearch();
-        } else {
-            console.log('Por favor ingrese una búsqueda válida.');
         }
     }
     
